@@ -20,8 +20,8 @@ INSIDE: ???
 #include <SHT1x.h>
 
 //SHT15 sensor pins
-#define dataPin  5
-#define clockPin 4
+#define dataPin  3
+#define clockPin 2
 SHT1x sht1x(dataPin, clockPin);
 
 int tmp102Address = 0x4B;
@@ -95,13 +95,7 @@ void loop()
           client.println("HTTP/1.1 200 OK");
           client.println("Content-Type: text/html");
           client.println();
-          //client.println(" <META HTTP-EQUIV=\"Refresh\" CONTENT=\"3;URL=http://172.16.0.114\" >");//------------important----for use with common browser view...ip address
-          
-//-----------------should be set as in the network settings of your arduino .....this is a refresh header for browser...........3 seconds referesh......
-
-  
-//----------------------------  
-
+          client.println(" <META HTTP-EQUIV=\"Refresh\" CONTENT=\"10\" >");
 // external temp------------------------------------------------------
 
   /*Wire.begin();
@@ -122,7 +116,7 @@ void loop()
  // Serial.println(celcius);
   client.print("external temp in celcius is :");
   temp_external = sht1x.readTemperatureC();
-  client.print(temp_external/2);
+  client.print(temp_external);
   client.println("<br />");
   //-----------------------internal temp 1 -----------------------------------------------
   //Wire.end();
